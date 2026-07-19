@@ -15,7 +15,7 @@ def test_unified_biometric_gatekeeper_flow():
     action = "iot/unlock"
     timestamp = int(time.time())
     
-    # 1. Generate correct token
+    # 1. Generate correct token for 'iot/unlock'
     import hmac
     import hashlib
     payload = f"{student_id}:{action}:{timestamp}".encode('utf-8')
@@ -44,8 +44,12 @@ def test_unified_biometric_gatekeeper_flow():
     assert res_3["reason"] == "TEMPORAL_WINDOW_VIOLATION"
     
     # 5. Test Forgery Protection (tampered signature)
-    # We must use an unused, altered token so it is not caught by the Anti-Replay registry first
-    forged_token = correct_token[:-1] + "0" # Modify the last character of the signature hash
+    # Generate a guaranteed-unique token for a different action to prevent any hex-collisions
+    forged_action = "iot/bypass"
+    forged_payload = f"{student_id}:{forged_action}:{timestamp}".encode('utf-8')
+    forged_token = hmac.new(SHARED_DEVICE_KEY, forged_payload, hashlib.sha256).hexdigest()
+    
+    # We pass the forged token but request the original action, forcing a signature mismatch
     res_raw_4 = secure_biometric_iot_gatekeeper(student_id, forged_token, action, timestamp)
     res_4 = json.loads(res_raw_4)
     assert res_4["status"] == "REJECTED"
