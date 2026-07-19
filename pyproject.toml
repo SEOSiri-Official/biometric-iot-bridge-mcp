@@ -1,0 +1,32 @@
+[project]
+name = "seosiri-biometric-iot-bridge-mcp"
+version = "1.0.0"
+description = "A sovereign, biometric-authenticated IoT security broker using the Model Context Protocol."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "SEOSiri-Official", email = "info@seosiri.com" }
+]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Application Frameworks"
+]
+dependencies = [
+    "mcp>=1.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/SEOSiri-Official/biometric-iot-bridge-mcp"
+Repository = "https://github.com/SEOSiri-Official/biometric-iot-bridge-mcp.git"
+Sponsorship = "https://github.com/sponsors/SEOSiri-Official"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src"]

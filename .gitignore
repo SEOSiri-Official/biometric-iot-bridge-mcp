@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.db
+.pytest_cache/
+.vscode/
+seosiri_biometric_iot_bridge_mcp.egg-info/
