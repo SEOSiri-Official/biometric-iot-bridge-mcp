@@ -16,7 +16,8 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Application Frameworks"
 ]
 dependencies = [
-    "mcp>=1.0.0"
+    "mcp>=1.0.0",
+    "paho-mqtt>=2.1.0"
 ]
 
 [project.urls]
